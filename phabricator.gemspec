@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'phabricator/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'phabricator'
+  spec.name          = 'phabricator-ruby'
   spec.version       = Phabricator::VERSION
-  spec.authors       = ['Amber Feng']
-  spec.email         = ['amber.feng@gmail.com']
-  spec.description   = %q{Wrapper around Phabricator's Conduit API}
-  spec.summary       = %q{Wrapper around Phabricator's Conduit API}
+  spec.authors       = ['Kimi Yu']
+  spec.email         = ['kimirius@gmail.com']
+  spec.description   = %q{Use Phabricator's Conduit API for Alfred workflow.}
+  spec.summary       = %q{Use Phabricator's Conduit API for Alfred workflow.}
   spec.homepage      = ''
   spec.license       = 'MIT'
 
@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
-  spec.required_ruby_version = '>= 2.1'
+  spec.required_ruby_version = '>= 2.0'
 
   spec.add_dependency 'rest-client'
 
