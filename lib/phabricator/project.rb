@@ -19,6 +19,12 @@ module Phabricator
       @@cached_projects[name] || refresh_cache_for_project(name)
     end
 
+    def self.find_all
+      populate_all unless @@cached_projects[name]
+
+      @@cached_projects 
+    end
+
     def self.raw_value_from_name(name)
       find_by_name(name).phid
     end
