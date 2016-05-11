@@ -8,7 +8,7 @@ module Phabricator
     prop :name
 
     def self.populate_all
-      query.each do |project|
+      query({limit: 999}).each do |project|
         @@cached_projects[project.name] = project
       end
     end
