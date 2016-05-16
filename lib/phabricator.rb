@@ -1,6 +1,6 @@
-require 'phabricator/config'
-require 'phabricator/version'
-require 'phabricator/logging'
+require_relative 'phabricator/config'
+require_relative 'phabricator/version'
+require_relative 'phabricator/logging'
 
 module Phabricator
   extend Phabricator::Config
@@ -16,6 +16,6 @@ module Phabricator
   end
 end
 
-require 'phabricator/conduit_client'
-require 'phabricator/phab_object'
-require 'phabricator/maniphest'
+require_relative 'phabricator/conduit_client'
+require_relative 'phabricator/phab_object'
+require_relative 'phabricator/maniphest'

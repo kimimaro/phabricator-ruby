@@ -1,4 +1,4 @@
-require 'phabricator/conduit_client'
+require_relative 'conduit_client'
 
 module Phabricator
   class User < PhabObject

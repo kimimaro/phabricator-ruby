@@ -1,28 +1,33 @@
-require 'phabricator/conduit_client'
+require_relative 'conduit_client'
 
 module Phabricator
   class Project < PhabObject
-    @@cached_projects = {}
+    @@cached_projects_hash = {}
+    @@cached_open_projects = []
 
     prop :id
     prop :name
 
     def self.populate_all
       query.each do |project|
-        @@cached_projects[project.name.downcase] = project
+        @@cached_projects_hash[project.name.downcase] = project
       end
     end
 
-    def self.find_by_name(name)
-      populate_all if @@cached_projects.empty?
-
-      @@cached_projects[name.downcase] || refresh_cache_for_project(name)
+    def self.fetch_all_open
+      @@cached_open_projects = query({status: "status-open", limit: 999})
     end
 
-    def self.find_all
-      populate_all unless @@cached_projects[name]
+    def self.find_by_name(name)
+      populate_all if @@cached_projects_hash.empty?
 
-      @@cached_projects 
+      @@cached_projects_hash[name.downcase] || refresh_cache_for_project(name)
+    end
+
+    def self.find_all_open
+      fetch_all_open if @@cached_open_projects.empty?
+
+      @@cached_open_projects
     end
 
     def self.raw_value_from_name(name)
@@ -42,10 +47,10 @@ module Phabricator
 
     def self.refresh_cache_for_project(name)
       query(names: [name]).each do |project|
-        @@cached_projects[project.name.downcase] = project
+        @@cached_projects_hash[project.name.downcase] = project
       end
 
-      @@cached_projects[name.downcase]
+      @@cached_projects_hash[name.downcase]
     end
   end
 end

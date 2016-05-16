@@ -1,6 +1,6 @@
-require 'phabricator/conduit_client'
-require 'phabricator/project'
-require 'phabricator/user'
+require_relative '../conduit_client'
+require_relative '../project'
+require_relative '../user'
 
 module Phabricator::Maniphest
   class Task < Phabricator::PhabObject
@@ -46,6 +46,7 @@ module Phabricator::Maniphest
     prop :title
     prop :description
     prop :priority
+    prop :uri
 
     prop :priority, class: Priority, name_prop: :priorityName
     prop :projectPHIDs, class: Phabricator::Project, name_prop: :projectNames
