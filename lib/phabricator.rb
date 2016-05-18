@@ -5,6 +5,12 @@ require_relative 'phabricator/logging'
 module Phabricator
   extend Phabricator::Config
 
+  def initialize
+    ::Phabricator::ConduitClient.new
+
+    puts "hahs"
+  end
+
   def self.lookup_project(item)
     return item if item.kind_of?(::Phabricator::Project)
     return ::Phabricator::Project.find_by_name(item)

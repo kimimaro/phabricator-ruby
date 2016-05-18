@@ -4,6 +4,7 @@ require_relative '../user'
 
 module Phabricator::Maniphest
   class Task < Phabricator::PhabObject
+
     module Priority
       class << self
         # TODO: Make these priority values actually correct, or figure out
@@ -48,6 +49,7 @@ module Phabricator::Maniphest
     prop :priority
     prop :uri
 
+    prop :fields, class: Hash
     prop :priority, class: Priority, name_prop: :priorityName
     prop :projectPHIDs, class: Phabricator::Project, name_prop: :projectNames
     prop :ccPHIDs, class: Phabricator::User, name_prop: :ccNames
